@@ -12,6 +12,7 @@ function computerPlay() {
         return computerSelection
     }
 }
+
 function playRound(playerSelection, computerSelection, playerScore, computerScore) {
     console.log(`The computer selected ${computerSelection}.`);
     console.log(`You selected ${playerSelection}.`)
@@ -64,19 +65,35 @@ function playRound(playerSelection, computerSelection, playerScore, computerScor
         }  
     return result
 }
-function game(playerSelection, playerScore, computerScore) {
+
+let playerScore = 0;
+let computerScore = 0;
+
+function playerRock() {
+    let playerSelection = "rock";
+    return playerSelection;
     let computerSelection = computerPlay();
     let matchOutcome = playRound(playerSelection, computerSelection, playerScore, computerScore);
     return matchOutcome;
 }
 
-let playerScore = 0;
-let computerScore = 0;
+function playerPaper() {
+    let playerSelection = "paper";
+    return playerSelection;
+    let computerSelection = computerPlay();
+    let matchOutcome = playRound(playerSelection, computerSelection, playerScore, computerScore);
+    return matchOutcome;
+}
+
+function playerScissors() {
+    let playerSelection = "scissors";
+    return playerSelection;
+    let computerSelection = computerPlay();
+    let matchOutcome = playRound(playerSelection, computerSelection, playerScore, computerScore);
+    return matchOutcome;
+}
 
 for (i = 1; i = 5; i++){
-    let playerSelection = prompt("Hello, please enter Rock, Paper, or Scissors.", "")
-    playerSelection.toLowerCase();
-    var matchOutcome = game(playerSelection, playerScore, computerScore);
     let answer = matchOutcome.includes('Win');
     if (answer === true) {
         playerScore = playerScore + 1;

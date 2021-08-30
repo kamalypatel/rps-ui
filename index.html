@@ -1,6 +1,191 @@
 <!DOCTYPE html>
 <html>
+<style>
+    .buttoncontainer {
+        display: inline-flex;
+        flex-direction: row;
+    }
+    .selectionbutton {
+        background-color: black;
+        color: white;
+        border: 2px solid blue;
+        margin: 10px 10px;
+        padding: 10px 10px;
+    }
+</style>
 <body>
-    <script src="/Users/Kamal/Documents/the_odin_project/rps-ui/script.js"></script>
+    <h1>Rock Paper Scissors Game</h1>
+    <p>Please pick rock, paper, or scissors by clicking the buttons below</p>
+    <div class="buttoncontainer">
+        <button type="button" onclick="playerRock()" id="rockselect" class="selectionbutton" value="0">Rock</button>
+        <button type="button" onclick="playerPaper()" id="paperselect" class="selectionbutton" value="0">Paper</button>
+        <button type="button" onclick="playerScissors()" id="scissorsselect" class="selectionbutton" value="0">Scissors</button>
+        <script>
+            let playerScore = 0;
+            let computerScore = 0;
+
+            function playerRock() {
+                const container = document.querySelector('#results');
+                container.innerHTML = '';
+                let playerSelection = "rock";
+                computerSelection = computerPlay();
+                results = playRound(playerSelection, computerSelection);
+                scores = addScores();
+                let playerScore = scores.playerScore,
+                    computerScore = scores.computerScore;
+                
+                const content3 = document.createElement('p');
+                content3.textContent = `Your score is ${playerScore} and the computer's score is ${computerScore}`;
+                container.appendChild(content3);
+            }
+
+            function playerPaper() {
+                const container = document.querySelector('#results');
+                container.innerHTML = '';
+                let playerSelection = "paper";
+                computerSelection = computerPlay();
+                results = playRound(playerSelection, computerSelection);
+                scores = addScores();
+                let playerScore = scores.playerScore,
+                    computerScore = scores.computerScore;
+                
+                const content3 = document.createElement('p');
+                content3.textContent = `Your score is ${playerScore} and the computer's score is ${computerScore}`;
+                container.appendChild(content3);
+
+            }
+
+            function playerScissors() {
+                const container = document.querySelector('#results');
+                container.innerHTML = '';
+                let playerSelection = "scissors";
+                computerSelection = computerPlay();
+                results = playRound(playerSelection, computerSelection);
+                scores = addScores();
+                let playerScore = scores.playerScore,
+                    computerScore = scores.computerScore;
+                
+                const content3 = document.createElement('p');
+                content3.textContent = `Your score is ${playerScore} and the computer's score is ${computerScore}`;
+                container.appendChild(content3);
+            }
+
+            function addScores() {
+                if (results === "Win") {
+                    playerScore++;
+                    computerScore = computerScore;
+
+                    return {
+                        playerScore,
+                        computerScore
+                    }
+                } else if (results === "Loss") {
+                    computerScore++;
+                    playerScore = playerScore;
+
+                    return {
+                        playerScore,
+                        computerScore
+                    }
+                } else {
+                    return {
+                        playerScore,
+                        computerScore
+                    }
+                }
+            }
+
+            function computerPlay() {
+                let randomNum = Math.random();
+                let computerSelection = "";
+                if (randomNum >= 0.666) {
+                    let computerSelection = "scissors";
+                    return computerSelection
+                } else if (randomNum >= 0.333) {
+                    let computerSelection = "paper";
+                    return computerSelection
+                } else {
+                    let computerSelection = "rock";
+                    return computerSelection
+                }
+            }
+
+            function playRound(playerSelection, computerSelection) {
+                const container = document.querySelector('#results');
+                const content = document.createElement('p');
+                content.textContent = `The computer selected ${computerSelection}. You selected ${playerSelection}`;
+                container.appendChild(content);
+                
+                if (playerSelection == computerSelection) {
+                    let matchOutcome = "Match is a draw";
+                    const content2 = document.createElement('p');
+                    content2.textContent = matchOutcome;
+                    container.appendChild(content2);
+                    var result = "Draw";
+                    return result;
+                } else if (playerSelection == "rock") {
+                    if (computerSelection == "paper") {
+                        let matchOutcome = "You Lose! Paper beats Rock";
+                        const content2 = document.createElement('p');
+                        content2.textContent = matchOutcome;
+                        container.appendChild(content2);
+                        var result = "Loss";
+                        return result;
+                    } else if (computerSelection == "scissors"){
+                        let matchOutcome = "You Win! Rock beats scissors";
+                        const content2 = document.createElement('p');
+                        content2.textContent = matchOutcome;
+                        container.appendChild(content2);
+                        var result = "Win";
+                        return result;
+                    }
+                } else if (playerSelection == "paper") {
+                    if (computerSelection == "scissors") {
+                        let matchOutcome = "You Lose! Scissors beats paper";
+                        const content2 = document.createElement('p');
+                        content2.textContent = matchOutcome;
+                        container.appendChild(content2);
+                        var result = "Loss";
+                        return result;
+                    } else if (computerSelection == "rock") {
+                        let matchOutcome = "You Win! Paper beats rock";
+                        const content2 = document.createElement('p');
+                        content2.textContent = matchOutcome;
+                        container.appendChild(content2);
+                        var result = "Win";
+                        return result;
+                    }
+                } else if (playerSelection == "scissors") {
+                    if (computerSelection == "rock") {
+                        let matchOutcome = "You Lose! Rock beats scissors";
+                        const content2 = document.createElement('p');
+                        content2.textContent = matchOutcome;
+                        container.appendChild(content2);
+                        var result = "Loss";
+                        return result;
+                    } else if (computerSelection == "paper") {
+                        let matchOutcome = "You Win! Scissors beats paper";
+                        const content2 = document.createElement('p');
+                        content2.textContent = matchOutcome;
+                        container.appendChild(content2);
+                        var result = "Win";
+                        return result;
+                    }
+                } else {
+                        let matchOutcome = "Invalid entry! Please enter Rock, Paper, or Scissors."
+                        const content2 = document.createElement('p');
+                        content2.textContent = matchOutcome;
+                        container.appendChild(content2);
+                        var result = "Draw";
+                        return result;
+                    }  
+                return result
+            }
+        </script>
+    </div>
+    <h2>Match Results:</h2>
+    <div id="results">
+
+    </div>
 </body>
 </html>
